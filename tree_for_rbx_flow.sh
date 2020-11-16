@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 usage() { echo "$(basename $0) [-t tractoflow/results] [-o output]" 1>&2; exit 1; }
 
-while getopts "d:o:" args; do
+while getopts "t:o:" args; do
     case "${args}" in
-        d) t=${OPTARG};;
+        t) t=${OPTARG};;
         o) o=${OPTARG};;
         *) usage;;
     esac

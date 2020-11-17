@@ -19,14 +19,13 @@ echo "Output folder: ${o}"
 
 echo "Building tree..."
 cd ${d}
+mkdir -p $o
 for i in *[!Compute_Kernel]; do
     echo $i
-    mkdir -p $o/$i
-    
-    # tractoflow pipeline
-    ln -s $d/$i/Compute_NODDI/*OD.nii.gz $o/$i/noddi_OD.nii.gz
-    ln -s $d/$i/Compute_NODDI/*ISOVF.nii.gz $o/$i/noddi_ISOVF.nii.gz
-    ln -s $d/$i/Compute_NODDI/*ICVF.nii.gz $o/$i/noddi_ICVF.nii.gz
+
+    ln -s $d/$i/Compute_NODDI/*OD.nii.gz $o/${i}_noddi_OD.nii.gz
+    ln -s $d/$i/Compute_NODDI/*ISOVF.nii.gz $o/${i}_noddi_ISOVF.nii.gz
+    ln -s $d/$i/Compute_NODDI/*ICVF.nii.gz $o/${i}_noddi_ICVF.nii.gz
 
 done
 echo "Done"

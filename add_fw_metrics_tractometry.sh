@@ -28,7 +28,7 @@ do
     ln -s $n/$i/Compute_FreeWater/*FW.nii.gz $o/$i/metrics/freewater.nii.gz
     ln -s $n/$i/FW_Corrected_Metrics/*fa.nii.gz $o/$i/metrics/FAt.nii.gz
     ln -s $n/$i/FW_Corrected_Metrics/*ad.nii.gz $o/$i/metrics/ADt.nii.gz
-    ln -s $n/$i/FW_Corrected/*rd.nii.gz $o/$i/metrics/RDt.nii.gz
+    ln -s $n/$i/FW_Corrected_Metrics/*rd.nii.gz $o/$i/metrics/RDt.nii.gz
 
 done
 echo "Done"

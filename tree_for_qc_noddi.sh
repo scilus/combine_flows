@@ -1,31 +1,31 @@
 #!/usr/bin/env bash
-usage() { echo "$(basename $0) [-d noddi_flow/results] [-o output]" 1>&2; exit 1; }
+usage() { echo "$(basename $0) [-n noddi_flow/results] [-o output]" 1>&2; exit 1; }
 
-while getopts "d:o:" args; do
+while getopts "n:o:" args; do
     case "${args}" in
-        d) d=${OPTARG};;
+        n) n=${OPTARG};;
         o) o=${OPTARG};;
         *) usage;;
     esac
 done
 shift $((OPTIND-1))
 
-if [ -z "${d}" ] || [ -z "${o}" ]; then
+if [ -z "${n}" ] || [ -z "${o}" ]; then
     usage
 fi
 
-echo "noddi_flow results folder: ${d}"
+echo "noddi_flow results folder: ${n}"
 echo "Output folder: ${o}"
 
-echo "Building tree..."
-cd ${d}
+echo "Building tree for following folders:"
+cd ${n}
 mkdir -p $o
 for i in *[!Compute_Kernel]; do
     echo $i
 
-    ln -s $d/$i/Compute_NODDI/*OD.nii.gz $o/${i}_noddi_OD.nii.gz
-    ln -s $d/$i/Compute_NODDI/*ISOVF.nii.gz $o/${i}_noddi_ISOVF.nii.gz
-    ln -s $d/$i/Compute_NODDI/*ICVF.nii.gz $o/${i}_noddi_ICVF.nii.gz
+    ln -s $n/$i/Compute_NODDI/*OD.nii.gz $o/${i}_noddi_OD.nii.gz
+    ln -s $n/$i/Compute_NODDI/*ISOVF.nii.gz $o/${i}_noddi_ISOVF.nii.gz
+    ln -s $n/$i/Compute_NODDI/*ICVF.nii.gz $o/${i}_noddi_ICVF.nii.gz
 
 done
 echo "Done"

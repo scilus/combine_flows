@@ -17,10 +17,11 @@ fi
 echo "rbx_flow folder: ${r}"
 echo "Output folder: ${o}"
 
-echo "Building tree..."
+echo "Building tree for the following folders:"
 cd ${r}
 for j in *;
 do
+   echo $j
    mkdir -p $o/$j
 
    ln -s ${r}/${j}/Clean_Bundles/*.trk ${o}/${j}/

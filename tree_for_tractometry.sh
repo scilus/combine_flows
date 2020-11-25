@@ -20,7 +20,7 @@ echo "tractoflow results folder: ${t}"
 echo "Output folder: ${o}"
 
 
-echo "Building tree..."
+echo "Building tree for the following folders:"
 cd ${r}
 for i in *;
 do

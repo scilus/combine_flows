@@ -17,7 +17,7 @@ fi
 echo "freewater_flow results folder: ${n}"
 echo "Output folder: ${o}"
 
-echo "Building tree..."
+echo "Building tree for the following folders:"
 cd ${n}
 for i in *[!Compute_Kernel]; 
 do

@@ -28,16 +28,22 @@ do
    mkdir -p $o/$i/metrics
    
    # get atlases
-   ln -s $(readlink -e $f/${i}/FS_BN_GL_Atlas/atlas_brainnetome_v2.nii.gz) $o/${i}/brainnetome_labels.nii.gz; 
-   ln -s $(readlink -e $f/${i}/FS_BN_GL_Atlas/atlas_freesurfer_v2.nii.gz) $o/${i}/freesurfer_labels.nii.gz; 
+   # if user wants brainnetome atlas
+   # ln -s $(readlink -e $f/${i}/FS_BN_GL_Atlas/atlas_brainnetome_v2.nii.gz) $o/${i}/brainnetome_labels.nii.gz;
 
-   # TODO. check that $t/$i exists
+   # if user wants freesurfer atlas
+   ln -s $(readlink -e $f/${i}/FS_BN_GL_Atlas/atlas_freesurfer_v2.nii.gz) $o/${i}/freesurfer_labels.nii.gz; 
+   # label list file needed for connectoflow is $f/${i}/FS_BN_GL_Atlas/atlas_freesurfer_v2_label_list.txt
+   # TODO: should have a smartway to get it?
+   
    if [ -d "$t/$i" ]
    then 
        # get tractoflow stuff for COMMIT/AFD_along_connections
        ln -s $(readlink -e $t/${i}//Resample_DWI/*__dwi_resampled.nii.gz) $o/${i}/dwi.nii.gz; 
-       ln -s $(readlink -e $t/${i}/Eddy_Topup/*__bval_eddy) $o/${i}/dwi.bval; 
-       ln -s $(readlink -e $t/${i}/Eddy_Topup/*__dwi_eddy_corrected.bvec) $o/${i}/dwi.bvec; 
+
+       ln -s $(readlink -e $t/${i}/Eddy*/*__bval_eddy) $o/${i}/dwi.bval; 
+       ln -s $(readlink -e $t/${i}/Eddy*/*__dwi_eddy_corrected.bvec) $o/${i}/dwi.bvec; 
+
        ln -s $(readlink -e $t/${i}/FODF_Metrics/*__fodf.nii.gz) $o/${i}/fodf.nii.gz; 
        ln -s $(readlink -e $t/${i}/FODF_Metrics/*__peaks.nii.gz) $o/${i}/peaks.nii.gz; 
        

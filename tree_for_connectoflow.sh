@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-usage() { echo "$(basename $0) [-t tractoflow/results] [-f freesurfer_flow/results] [-o output]" 1>&2; exit 1; }
+usage() { echo "$(basename $0) [-t tractoflow/results] [-f freesurfer_flow/results] [-o output] [-b use_brainnetome (optional)]" 1>&2; exit 1; }
 
-while getopts "t:f:o:" args; do
+while getopts "t:f:o:b:" args; do
     case "${args}" in
         t) t=${OPTARG};;
 	f) f=${OPTARG};;
         o) o=${OPTARG};;
+	b) b=${OPTARG};;
         *) usage;;
     esac
 done
@@ -18,6 +19,7 @@ fi
 echo "tractoflow/results folder: ${t}"
 echo "freesurfer_flow/results folder: ${f}"
 echo "Output folder: ${o}"
+echo "Use brainnetome atlas instead of freesurfer (On/Off): ${b}"
 
 echo "Building tree for the following folders:"
 cd $f
@@ -26,15 +28,15 @@ do
    echo $i
    mkdir -p $o/$i
    mkdir -p $o/$i/metrics
-   
-   # get atlases
-   # if user wants brainnetome atlas
-   # ln -s $(readlink -e $f/${i}/FS_BN_GL_Atlas/atlas_brainnetome_v2.nii.gz) $o/${i}/brainnetome_labels.nii.gz;
 
-   # if user wants freesurfer atlas
-   ln -s $(readlink -e $f/${i}/FS_BN_GL_Atlas/atlas_freesurfer_v2.nii.gz) $o/${i}/freesurfer_labels.nii.gz; 
-   # label list file needed for connectoflow is $f/${i}/FS_BN_GL_Atlas/atlas_freesurfer_v2_label_list.txt
-   # TODO: should have a smartway to get it?
+   # get atlases
+   # if user does not want brainnetome atlas, we get freesurfer, else
+   if [ -z "${b}" ]; then 
+       ln -s $(readlink -e $f/${i}/FS_BN_GL_Atlas/atlas_freesurfer_v2.nii.gz) $o/${i}/freesurfer_labels.nii.gz;
+   else
+       ln -s $(readlink -e $f/${i}/FS_BN_GL_Atlas/atlas_brainnetome_v2.nii.gz) $o/${i}/brainnetome_labels.nii.gz;
+   fi   
+   # TODO: can we be smarter here?
    
    if [ -d "$t/$i" ]
    then 

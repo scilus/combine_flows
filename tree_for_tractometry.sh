@@ -39,10 +39,10 @@ do
     fi
 
     # RBX results
-    for f in $r/$i/Clean_Bundles/*cleaned.trk;
+    for file in $r/$i/Clean_Bundles/*cleaned.trk;
     do
-	    name=${f/*Clean_Bundles\//}
-	    ln -s $f $o/$i/bundles/${name/_m_cleaned.trk/.trk}
+	    name=${file/*Clean_Bundles\//}
+	    ln -s $file $o/$i/bundles/${name/_m_cleaned.trk/.trk}
     done
 
     # tractoflow metrics
@@ -71,3 +71,5 @@ do
     fi
 done
 echo "Done"
+
+rm -rf ${o}/Average_Bundles

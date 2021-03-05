@@ -24,7 +24,7 @@ do
    echo $i
    mkdir -p $o/$i
 
-   ln -s ${t}/${i}/Tracking/*.trk ${o}/${i}/
+   ln -s ${t}/${i}/*Tracking/*.trk ${o}/${i}/
    ln -s ${t}/${i}/DTI_Metrics/*fa.nii.gz ${o}/${i}/
 done
 

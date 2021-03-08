@@ -34,6 +34,11 @@ if __name__ == "__main__":
     print(f"tractoflow folder: {tractoflow_dir.resolve()}")
     print(f"rbx_flow tree folder: {rbx_flow_tree.resolve()}")
 
+    tree_patterns = [
+        "*Tracking/*tracking*.trk",
+        "DTI_Metrics/*__fa.nii.gz",
+    ]
+
     for subject in tractoflow_dir.iterdir():
         excluded_dirs = ["FRF", "Readme"]
         if any([_ in subject.name for _ in excluded_dirs]):
@@ -42,10 +47,6 @@ if __name__ == "__main__":
         subject_tree = rbx_flow_tree / subject.name
         subject_tree.mkdir(exist_ok=True)
 
-        tree_patterns = [
-            "*Tracking/*tracking*.trk",
-            "DTI_Metrics/*__fa.nii.gz",
-        ]
         for pattern in tree_patterns:
             link = list(subject.glob(pattern))
             if len(link) == 0:

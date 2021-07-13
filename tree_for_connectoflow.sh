@@ -66,6 +66,10 @@ do
        
        # Option Tractoflow with local tracking. Can we support this?
        ln -s $(readlink -e $t/${i}/Tracking/*.trk) $o/${i}/pft_tracking.trk;
+       # ln -s $(readlink -e $t/${i}/*Tracking/*.trk) $o/${i}/
+
+       # RBX_flow input
+       #ln -s $(readlink -e /lustre03/project/6004980/datasets/brazil_covid19/derivatives/rbx_flow/input/${i}/*.trk) $o/${i}/ensemble_tracking.trk;
    fi
    
 done

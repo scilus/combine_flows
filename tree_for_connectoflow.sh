@@ -32,9 +32,9 @@ do
    # get atlases
    # if user does not want brainnetome atlas, we get freesurfer, else
    if [ -z "${b}" ]; then 
-       ln -s $(readlink -e $f/${i}/FS_BN_GL_Atlas/atlas_freesurfer_v2.nii.gz) $o/${i}/freesurfer_labels.nii.gz;
+       ln -s $(readlink -e $f/${i}/Generate_Atlases_FS_BN_GL_SF/atlas_freesurfer_v3.nii.gz) $o/${i}/freesurfer_labels.nii.gz;
    else
-       ln -s $(readlink -e $f/${i}/FS_BN_GL_Atlas/atlas_brainnetome_v2.nii.gz) $o/${i}/brainnetome_labels.nii.gz;
+       ln -s $(readlink -e $f/${i}/Generate_Atlases_FS_BN_GL_SF/atlas_brainnetome_v3.nii.gz) $o/${i}/brainnetome_labels.nii.gz;
    fi   
    # TODO: can we be smarter here?
    
@@ -65,8 +65,9 @@ do
        # TODO: add FW/NODDI metrics with -n -f ... conflict in -f convention...
        
        # Option Tractoflow with local tracking. Can we support this?
-       ln -s $(readlink -e $t/${i}/Tracking/*.trk) $o/${i}/pft_tracking.trk;
+       #ln -s $(readlink -e $t/${i}/Tracking/*.trk) $o/${i}/pft_tracking.trk;
        # ln -s $(readlink -e $t/${i}/*Tracking/*.trk) $o/${i}/
+       ln -s $(readlink -e $t/${i}/*ensemble*.trk) $o/${i}/ensemble_tracking.trk;
 
        # RBX_flow input
        #ln -s $(readlink -e /lustre03/project/6004980/datasets/brazil_covid19/derivatives/rbx_flow/input/${i}/*.trk) $o/${i}/ensemble_tracking.trk;

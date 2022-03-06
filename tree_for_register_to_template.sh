@@ -27,7 +27,7 @@ do
    echo $i
    mkdir -p $o/${i}/{metrics,tractograms}
 
-   ln -s $t/$i/Register_T1/$i__t1_warped.nii.gz $o/$i/t1.nii.gz
+   ln -s $t/$i/Register_T1/${i}__t1_warped.nii.gz $o/$i/t1.nii.gz
 
    # tractoflow tractograms
    ln -s $t/$i/*Tracking/*.trk $o/$i/tractograms/

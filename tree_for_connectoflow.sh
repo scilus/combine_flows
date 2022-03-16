@@ -31,10 +31,20 @@ do
 
    # get atlases
    # if user does not want brainnetome atlas, we get freesurfer, else
+
+   # if you ran freesurfer_flow v2, uncomment de last two lines in the if then
    if [ -z "${b}" ]; then 
        ln -s $(readlink -e $f/${i}/Generate_Atlases_FS_BN_GL_SF/atlas_freesurfer_v3.nii.gz) $o/${i}/freesurfer_labels.nii.gz;
+       ln -s $(readlink -e $f/${i}/Generate_Atlases_FS_BN_GL_SF/atlas_freesurfer_v3_labels_list.txt) $o/${i}/freesurfer_labels_list.txt;
+
+       #ln -s $(readlink -e $f/${i}/FS_BN_GL_Atlas/atlas_freesurfer_v2.nii.gz) $o/${i}/freesurfer_labels.nii.gz;
+       #ln -s $(readlink -e $f/${i}/FS_BN_GL_Atlas/atlas_freesurfer_v2_labels_list.txt) $o/../freesurfer_labels_list.txt;
    else
        ln -s $(readlink -e $f/${i}/Generate_Atlases_FS_BN_GL_SF/atlas_brainnetome_v3.nii.gz) $o/${i}/brainnetome_labels.nii.gz;
+       ln -s $(readlink -e $f/${i}/Generate_Atlases_FS_BN_GL_SF/atlas_brainnetome_v3_labels_list.txt) $o/..//brainnetome_labels_list.txt;
+
+       #ln -s $(readlink -e $f/${i}/FS_BN_GL_Atlas/atlas_brainnetome_v2.nii.gz) $o/${i}/brainnetome_labels.nii.gz;
+       #ln -s $(readlink -e $f/${i}/FS_BN_GL_Atlas/atlas_brainnetome_v2_labels_list.txt) $o/../brainnetome_labels_list.txt;
    fi   
    # TODO: can we be smarter here?
    

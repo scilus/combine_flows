@@ -80,10 +80,10 @@ do
     fi
 
     # freesurfer_flow template
-    if [[ ! -z "${w}" ]];
+    if [[ ! -z "${f}" ]];
     then
-      ln -s $w/$i/Generate_Atlases_FS_BN_GL_SF/atlas_brainnetome_v*.nii.gz $o/${i}/labels.nii.gz
-      ln -s $w/$i/Generate_Atlases_FS_BN_GL_SF/labels_list.txt $o/labels_list.txt
+      ln -s $f/$i/Generate_Atlases_FS_BN_GL_SF/atlas_brainnetome_v*.nii.gz $o/${i}/labels.nii.gz
+      ln -s $f/$i/Generate_Atlases_FS_BN_GL_SF/labels_list.txt $o/labels_list.txt
     fi
 done
 echo "Done"

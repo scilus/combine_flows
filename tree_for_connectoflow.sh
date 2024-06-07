@@ -60,7 +60,7 @@ do
     else
       # Tracking from Tractoflow
       ln -s ${t}/${i}/*Tracking/*.trk ${o}/${i}/
-    end
+    fi
 
     # noddi_flow metrics
     if [[ ! -z "${n}" ]];

@@ -25,7 +25,7 @@ do
    mkdir -p $o/$i
 
    ln -s ${t}/${i}/*Tracking/*.trk ${o}/${i}/
-   ln -s ${t}/${i}/DTI_Metrics/*fa.nii.gz ${o}/${i}/
+   ln -s ${t}/${i}/DTI_Metrics/*fa.nii.gz ${o}/${i}/fa.nii.gz
 done
 
 rm -rf ${o}/Readme*

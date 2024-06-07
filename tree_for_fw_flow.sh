@@ -25,7 +25,7 @@ do
    mkdir -p $o/$i
 
    ln -s ${t}/${i}/Resample_DWI/*dwi_resampled.nii.gz ${o}/${i}/dwi.nii.gz
-   ln -s ${t}/${i}/Resample_B0/*b0_mask_resampled.nii.gz ${o}/${i}/brain_mask.nii.gz
+   ln -s ${t}/${i}/Extract_B0/*b0_mask_resampled.nii.gz ${o}/${i}/brain_mask.nii.gz
    ln -s ${t}/${i}/Eddy*/*bval_eddy ${o}/${i}/bval
    ln -s ${t}/${i}/Eddy*/*dwi_eddy_corrected.bvec ${o}/${i}/bvec
 done

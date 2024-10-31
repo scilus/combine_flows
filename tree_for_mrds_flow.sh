@@ -36,10 +36,10 @@ do
     ln -s ${t}/${i}/Eddy_Topup/*dwi_eddy_corrected.bvec ${o}/${i}/dwi.bvec
     ln -s ${t}/${i}/Eddy_Topup/*bval_eddy ${o}/${i}/dwi.bval
     if [ "$s" == "local_tracking" ]; then
-        ln -s ${t}/${i}/Local_Tracking/*local_tracking_prob_wm_seeding_wm_mask_seed_0.trk ${o}/${i}/local_tracking.trk
+        ln -s ${t}/${i}/Local_Tracking/*local_tracking*.trk ${o}/${i}/local_tracking.trk
         ln -s ${t}/${i}/Local_Tracking_Mask/*local_tracking_mask.nii.gz ${o}/${i}/mask.nii.gz
     elif [ "$s" == "pft_tracking" ]; then
-        ln -s ${t}/${i}/PFT_Tracking/*pft_tracking_prob_interface_seed_0.trk ${o}/${i}/pft_tracking.trk
+        ln -s ${t}/${i}/PFT_Tracking/*pft_tracking*.trk ${o}/${i}/pft_tracking.trk
         ln -s ${t}/${i}/PFT_Tracking_Maps/*map_include.nii.gz ${o}/${i}/mask.nii.gz
     fi
 done

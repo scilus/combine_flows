@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-usage() { echo "$(basename $0) [-r RBX] [-t tractoflow/results] [-n noddi/results] [-f freewater_flow/results] [-o output]" 1>&2; exit 1; }
+usage() { echo "$(basename $0) [-r RBX] [-t tractoflow/results] [-n noddi/results] [-f freewater_flow/results] [-m mrds_flow/results] [-o output]" 1>&2; exit 1; }
 
 while getopts "r:t:n:f:o:" args; do
     case "${args}" in
@@ -7,6 +7,7 @@ while getopts "r:t:n:f:o:" args; do
         t) t=${OPTARG};;
         n) n=${OPTARG};;
         f) f=${OPTARG};;
+        m) m=${OPTARG};;
         o) o=${OPTARG};;
         *) usage;;
     esac
@@ -21,6 +22,7 @@ echo "rbx_flow results folder: ${r}"
 echo "tractoflow results folder: ${t}"
 echo "noddi_flow results folder: ${n}"
 echo "freewater_flow results folder: ${f}"
+echo "mrds_flow results folder: ${m}"
 echo "Output folder: ${o}"
 
 echo "Building tree for the following folders:"
@@ -30,6 +32,7 @@ do
     echo $i
     mkdir -p $o/$i/bundles
     mkdir -p $o/$i/metrics
+    mkdir -p $o/$i/fixel_metrics
 
     # if centroids are there, create dir
     if [ -d "$r/$i/Transform_Centroids/" ]
@@ -68,6 +71,17 @@ do
       ln -s $f/$i/FW_Corrected_Metrics/*fa.nii.gz $o/$i/metrics/FAt.nii.gz
       ln -s $f/$i/FW_Corrected_Metrics/*ad.nii.gz $o/$i/metrics/ADt.nii.gz
       ln -s $f/$i/FW_Corrected_Metrics/*rd.nii.gz $o/$i/metrics/RDt.nii.gz
+    fi
+
+     # mrds_flow metrics
+    if [[ ! -z "${m}" ]];
+    then
+      ln -s $m/$i/Modsel_TODI/*PDDs_CARTESIAN.nii.gz $o/$i/pdds.nii.gz
+      ln -s $m/$i/Modsel_TODI/*NUM_COMP.nii.gz $o/$i/metrics/todi_nufo.nii.gz
+      ln -s $m/$i/MRDS_Metrics/*FA.nii.gz $o/$i/fixel_metrics/fixel_fa.nii.gz
+      ln -s $m/$i/MRDS_Metrics/*RD.nii.gz $o/$i/fixel_metrics/fixel_rd.nii.gz
+      ln -s $m/$i/MRDS_Metrics/*AD.nii.gz $o/$i/fixel_metrics/fixel_ad.nii.gz
+      ln -s $m/$i/MRDS_Metrics/*MD.nii.gz $o/$i/fixel_metrics/fixel_md.nii.gz
     fi
 done
 echo "Done"

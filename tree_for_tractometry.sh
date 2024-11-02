@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 usage() { echo "$(basename $0) [-r RBX] [-t tractoflow/results] [-n noddi/results] [-f freewater_flow/results] [-m mrds_flow/results] [-o output]" 1>&2; exit 1; }
 
-while getopts "r:t:n:f:o:" args; do
+while getopts "r:t:n:f:m:o:" args; do
     case "${args}" in
         r) r=${OPTARG};;
         t) t=${OPTARG};;

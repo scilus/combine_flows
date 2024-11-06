@@ -55,6 +55,7 @@ do
     ln -s $t/$i/DTI_Metrics/*rd.nii.gz $o/$i/metrics/rd.nii.gz
     ln -s $t/$i/FODF_Metrics/*afd_total.nii.gz $o/$i/metrics/afd_total.nii.gz
     ln -s $t/$i/FODF_Metrics/*nufo.nii.gz $o/$i/metrics/nufo.nii.gz
+    ln -s $t/$i/FODF_Metrics/*fodf.nii.gz $o/$i/fodf.nii.gz
 
     # noddi_flow metrics
     if [[ ! -z "${n}" ]];

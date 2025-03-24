@@ -72,6 +72,7 @@ do
       ln -s $f/$i/FW_Corrected_Metrics/*fa.nii.gz $o/$i/metrics/FAt.nii.gz
       ln -s $f/$i/FW_Corrected_Metrics/*ad.nii.gz $o/$i/metrics/ADt.nii.gz
       ln -s $f/$i/FW_Corrected_Metrics/*rd.nii.gz $o/$i/metrics/RDt.nii.gz
+      ln -s $f/$i/FW_Corrected_Metrics/*rd.nii.gz $o/$i/metrics/MDt.nii.gz
     fi
 
      # mrds_flow metrics

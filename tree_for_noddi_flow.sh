@@ -30,7 +30,7 @@ do
    ln -s ${t}/${i}/Eddy*/*dwi_eddy_corrected.bvec ${o}/${i}/bvec
    ln -s ${t}/${i}/DTI_Metrics/*ad.nii.gz ${o}/${i}/ad.nii.gz
    ln -s ${t}/${i}/DTI_Metrics/*fa.nii.gz ${o}/${i}/fa.nii.gz
-   ln -s ${t}/${i}/DTI_Metrics/*md.nii.gz ${o}/${i}/fa.nii.gz  
+   ln -s ${t}/${i}/DTI_Metrics/*md.nii.gz ${o}/${i}/md.nii.gz  
 done
 
 rm -rf ${o}/Readme*

@@ -32,7 +32,6 @@ do
     echo $i
     mkdir -p $o/$i/bundles
     mkdir -p $o/$i/metrics
-    mkdir -p $o/$i/fixel_metrics
 
     # if centroids are there, create dir
     if [ -d "$r/$i/Transform_Centroids/" ]
@@ -78,6 +77,7 @@ do
      # mrds_flow metrics
     if [[ ! -z "${m}" ]];
     then
+      mkdir -p $o/$i/fixel_metrics
       ln -s $m/$i/Modsel_TODI/*PDDs_CARTESIAN.nii.gz $o/$i/pdds.nii.gz
       ln -s $m/$i/Modsel_TODI/*NUM_COMP.nii.gz $o/$i/metrics/todi_nufo.nii.gz
       ln -s $m/$i/MRDS_Metrics/*FA.nii.gz $o/$i/fixel_metrics/fixel_fa.nii.gz

@@ -28,9 +28,10 @@ do
    ln -s ${t}/${i}/Extract_B0/*b0_mask_resampled.nii.gz ${o}/${i}/brain_mask.nii.gz
    ln -s ${t}/${i}/Eddy*/*bval_eddy ${o}/${i}/bval
    ln -s ${t}/${i}/Eddy*/*dwi_eddy_corrected.bvec ${o}/${i}/bvec
-   ln -s ${t}/${i}/DTI_Metrics/*ad.nii.gz ${o}/${i}/ad.nii.gz
    ln -s ${t}/${i}/DTI_Metrics/*fa.nii.gz ${o}/${i}/fa.nii.gz
+   ln -s ${t}/${i}/DTI_Metrics/*ad.nii.gz ${o}/${i}/ad.nii.gz
    ln -s ${t}/${i}/DTI_Metrics/*md.nii.gz ${o}/${i}/md.nii.gz  
+   ln -s ${t}/${i}/DTI_Metrics/*rd.nii.gz ${o}/${i}/rd.nii.gz
 done
 
 rm -rf ${o}/Readme*

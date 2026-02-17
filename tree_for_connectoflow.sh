@@ -25,11 +25,11 @@ echo "setflow results folder: ${s}"
 echo "Output folder: ${o}"
 
 echo "Building tree for the following folders:"
-cd ${r}
-for i in *;
+cd ${t}
+for i in *[!{Readme}];
 do
     echo $i
-    mkdir -p $o/$i/
+    mkdir -p $o/$i/metrics
 
     # tractoflow metrics
     ln -s $t/$i/DTI_Metrics/*fa.nii.gz $o/$i/metrics/fa.nii.gz
@@ -40,18 +40,18 @@ do
     ln -s $t/$i/FODF_Metrics/*nufo.nii.gz $o/$i/metrics/nufo.nii.gz
 
     # Peaks and FODF
-    ln -s $t/$i/FODF_Metrics/*peak.nii.gz $o/$i/peaks.nii.gz
+    ln -s $t/$i/FODF_Metrics/*peaks.nii.gz $o/$i/peaks.nii.gz
     ln -s $t/$i/FODF_Metrics/*fodf.nii.gz $o/$i/fodf.nii.gz
 
     # T1
-    ln -s -e $t/${i}/Register_T1/*__output0GenericAffine.mat $o/${i}/output0GenericAffine.mat
-    ln -s -e $t/${i}/Register_T1/*__1Warp.nii.gz $o/${i}/1Warp.nii.gz
-    ln -s -e $t/${i}/Bet_T1/*__t1_bet.nii.gz $o/${i}/t1.nii.gz
+    ln -s $t/${i}/Register_T1/*__output0GenericAffine.mat $o/${i}/output0GenericAffine.mat
+    ln -s $t/${i}/Register_T1/*__t1_warped.nii.gz $o/${i}/1Warp.nii.gz
+    ln -s $t/${i}/Bet_T1/*__t1_bet.nii.gz $o/${i}/t1.nii.gz
 
     # DWI
-    ln -s -e $t/${i}/Resample_DWI/*__dwi_resampled.nii.gz $o/${i}/dwi.nii.gz
-    ln -s -e $t/${i}/Eddy*/*__bval_eddy $o/${i}/dwi.bval
-    ln -s -e $t/${i}/Eddy*/*__dwi_eddy_corrected.bvec $o/${i}/dwi.bvec
+    ln -s $t/${i}/Resample_DWI/*__dwi_resampled.nii.gz $o/${i}/dwi.nii.gz
+    ln -s $t/${i}/Eddy*/*__bval_eddy $o/${i}/dwi.bval
+    ln -s $t/${i}/Eddy*/*__dwi_eddy_corrected.bvec $o/${i}/dwi.bvec
 
     if [[ ! -z "${s}" ]];
     then
@@ -82,8 +82,8 @@ do
     # freesurfer_flow template
     if [[ ! -z "${f}" ]];
     then
-      ln -s $f/$i/Generate_Atlases_FS_BN_GL_SF/atlas_brainnetome_v*.nii.gz $o/${i}/labels.nii.gz
-      ln -s $f/$i/Generate_Atlases_FS_BN_GL_SF/labels_list.txt $o/labels_list.txt
+      ln -s $f/$i/Generate_Atlases_FS_BN_GL_SF/atlas_brainnetome_v5.nii.gz $o/$i/labels.nii.gz
+      ln -s $f/$i/Generate_Atlases_FS_BN_GL_SF/atlas_brainnetome_v*_labels_list.txt $o/labels_list.txt
     fi
 done
 echo "Done"
